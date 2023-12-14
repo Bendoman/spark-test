@@ -27,9 +27,12 @@ def test():
 
 @app.route("/add",methods=['POST'])
 def add():
-    token=get_api_key()
-    ret = addWorker(token,request.form['num'])
-    return ret
+    try:
+        token=get_api_key()
+        ret = addWorker(token,request.form['num'])
+        return ret
+    except e:
+        print(e)
 
 def addWorker(token, num):
     with open('payload.json') as p:
