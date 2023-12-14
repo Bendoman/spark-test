@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 
 def get_api_key() -> str:
-    return os.environ.get('API_KEY')
+    return os.environ.get('API-KEY')
     #local testing
     # with open('.key') as f:
     #     return f.read()
