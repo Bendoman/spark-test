@@ -8,13 +8,9 @@ import json
 app = Flask(__name__)
 
 def get_api_key() -> str:
-    secret = os.environ.get("COMPUTE_API_KEY")
-    if secret:
-        return secret
-    else:
-        #local testing
-        with open('.key') as f:
-            return f.read()
+    #local testing
+    with open('.key') as f:
+        return f.read()
       
 @app.route("/")
 def hello():
@@ -27,12 +23,10 @@ def test():
 
 @app.route("/add",methods=['POST'])
 def add():
-    try:
-        token=get_api_key()
-        ret = addWorker(token,request.form['num'])
-        return ret
-    except e:
-        print(e)
+    token=get_api_key()
+    ret = addWorker(token,request.form['num'])
+    return ret
+
 
 def addWorker(token, num):
     with open('payload.json') as p:
